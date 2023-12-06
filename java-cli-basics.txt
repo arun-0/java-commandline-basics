@@ -1,0 +1,60 @@
+default-package
+
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello from Lalit!");
+    }
+}
+
+
+javac HelloWorld.java  -> gives HelloWorld.class	// "javac HelloWorld" doesnt work
+java HelloWorld			// runs the program in class. "java HelloWorld.class" doesn't work
+
+Note: for a for single file program that does not have external dependency,	directly executing .java file works.
+"java HelloWorld.java" runs the program. this is a new feature since java 11
+
+############################
+
+packages
+
+packages must be in folder structure 
+
+example1
+javac com\lalit\calculator\CalculatorByLalit.java
+java com.lalit.calculator.CalculatorByLalit
+
+javac -d out com\lalit\calculator\CalculatorByLalit.java
+cd out
+java com.lalit.calculator.CalculatorByLalit
+
+
+simple jar example1
+javac com\lalit\utility\*.java
+jar cf utility.jar com\lalit\utility\*.class
+
+javac -d out com\lalit\utility\*.java
+jar cf utility.jar -C .\out .
+
+
+=========
+example2
+javac -cp .;utility.jar com\lalit\calculator\CalculatorByLalit.java
+java -cp .;utility.jar com.lalit.calculator.CalculatorByLalit
+
+=========
+executable jar example1
+javac com\lalit\calculator\CalculatorByLalit.java
+jar cfe calculator.jar com.lalit.calculator.CalculatorByLalit com\lalit\calculator\*.class com\lalit\utility\*.class
+java -jar calculator.jar
+
+javac -d out com\lalit\calculator\CalculatorByLalit.java
+jar cfe calculator.jar com.lalit.calculator.CalculatorByLalit -C .\out .
+java -jar calculator.jar
+
+
+
+executable jar example2
+javac -cp .;utility.jar com\lalit\calculator\CalculatorByLalit.java
+jar -cvfm calculator.jar MANIFEST.MF -C ./ .
+java -jar calculator.jar
+

@@ -1,0 +1,5 @@
+Manifest-Version: 1.0 
+Created-By: lalit
+Class-Path: utility.jar
+Main-Class: com.lalit.calculator.CalculatorByLalit
+
